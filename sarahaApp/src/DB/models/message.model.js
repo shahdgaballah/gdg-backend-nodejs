@@ -1,16 +1,20 @@
 import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema({
-    receiver: {
+    initTime: Date
+    ,
+    receiverId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        required: true,
+        ref: "User"
     }
     ,
     content:{
         type: String,
         required: true,
-        minLength: [2, "minimum length of content is 2 characters"],
-        maxLength: [50, "maximum length of content is 50 characters"]
+        minLength: [5, "minimum length of content is 5 characters"],
+        maxLength: [100, "maximum length of content is 100 characters"],
+        trim: true
     },
 }, {
     timestamps: true
